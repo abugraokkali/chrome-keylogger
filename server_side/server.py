@@ -23,7 +23,7 @@ def home():
 def savelogs(log, source):
     now = datetime.now()
     nowtime = now.strftime("%d-%m-%Y_%H:%M:%S")
-    f = open(source, "a")
+    f = open(source+".log", "a")
     f.write(nowtime + ": " + log + "\n")
     f.close()
 
